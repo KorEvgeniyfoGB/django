@@ -25,11 +25,11 @@ class Product(models.Model):
 
 class Order(models.Model):
     client = models.ForeignKey(Client,
-                               on_delete=models.CASCADE)  # связь с моделью «Клиент», указывает на клиента, сделавшего заказ
+                               on_delete=models.CASCADE)
     products = models.ManyToManyField(Product,
-                                      through="OrderProduct", related_name='products')  # связь с моделью «Товар», указывает на товары, входящие в заказ
-    total = models.DecimalField(max_digits=10, decimal_places=2)  # общая сумма заказа
-    date_ordered = models.DateTimeField(auto_now_add=True)  # дата оформления заказа
+                                      through="OrderProduct", related_name='products')
+    total = models.DecimalField(max_digits=10, decimal_places=2)
+    date_ordered = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f"Order #{self.pk} by {self.client.name}"
