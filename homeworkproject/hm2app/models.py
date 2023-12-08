@@ -28,7 +28,7 @@ class Order(models.Model):
                                on_delete=models.CASCADE)
     products = models.ManyToManyField(Product,
                                       through="OrderProduct", related_name='products')
-    total = models.DecimalField(max_digits=10, decimal_places=2)
+    total = models.DecimalField(max_digits=10, decimal_places=2, blank=True)
     date_ordered = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
