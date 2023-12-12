@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Заказы клиента</title>
+</head>
+<body>
+    <h2>Заказы за последнюю неделю</h2>
+    <ul>
+        {% for order in orders_last_week %}
+            {% for product in order.products.all %}
+                <li>{{ product.name }} - {{ order.date_ordered}}</li>
+            {% endfor %}
+        {% empty %}
+            <li>Нет заказов за этот период.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Заказы за последний месяц</h2>
+    <ul>
+        {% for order in orders_last_month %}
+            {% for product in order.products.all %}
+                <li>{{ product.name }} - {{ order.date_ordered}}</li>
+            {% endfor %}
+        {% empty %}
+            <li>Нет заказов за этот период.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Заказы за последний год</h2>
+    <ul>
+        {% for order in orders_last_year %}
+            {% for product in order.products.all %}
+                <li>{{ product.name }} - {{ order.date_ordered}}</li>
+            {% endfor %}
+        {% empty %}
+            <li>Нет заказов за этот период.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
