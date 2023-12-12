@@ -20,7 +20,7 @@ from .views import get_client_orders
 
 
 urlpatterns = [
-    path('/client/<int:client_id>/', get_client_orders, name='client_orders'),
+    path('client/<int:client_id>', get_client_orders, name='client_orders'),
     # path('/about/', about, name='about'),
 
 ]
