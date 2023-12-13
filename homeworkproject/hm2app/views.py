@@ -1,7 +1,9 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from django.shortcuts import render, redirect
 from datetime import timedelta
 from django.utils import timezone
-from .models import Order
+from .models import Order, Product
+from .forms import AddProductForm
 
 
 def get_client_orders(request, client_id):
@@ -24,3 +26,28 @@ def get_client_orders(request, client_id):
         'orders_last_year': orders_last_year
     }
     return render(request, 'hm2app/client_orders.html', context)
+
+
+def getproduct(request):
+    product = Product.objects.all()
+
+    data = {
+        'title': 'Товары',
+        'product': product,
+    }
+    return render(request, 'hm2app/product.html', data)
+
+
+def addproduct(request):
+    if request.method == 'POST':
+        form = AddProductForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            return redirect('product')
+    else:
+        form = AddProductForm()
+    data = {
+        'title': 'Добавление товара',
+        'form': form
+    }
+    return render(request, 'hm2app/addproduct.html', data)

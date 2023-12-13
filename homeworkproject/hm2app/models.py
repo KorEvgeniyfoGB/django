@@ -13,10 +13,12 @@ class Client(models.Model):
 
 
 class Product(models.Model):
-    name = models.CharField(max_length=100)
-    description = models.TextField()
-    price = models.DecimalField(max_digits=10, decimal_places=2)
-    quantity = models.PositiveIntegerField()
+    name = models.CharField(max_length=100, verbose_name="Наименование товара")
+    description = models.TextField(max_length=255, verbose_name="Описание товара")
+    photo = models.ImageField(upload_to="photos/%Y/%m/%d/", default=None,
+                              blank=True, null=True, verbose_name="Фото")
+    price = models.DecimalField(max_digits=10, decimal_places=2, verbose_name="Цена товара")
+    quantity = models.PositiveIntegerField(verbose_name="Цена товара")
     date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -49,4 +51,3 @@ class OrderProduct(models.Model):
     order = models.ForeignKey(Order, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity_pr = models.PositiveIntegerField(default=1)
-

@@ -16,11 +16,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import get_client_orders
+from .views import get_client_orders, getproduct, addproduct
 
 
 urlpatterns = [
+    path('product', getproduct, name='product'),
     path('client/<int:client_id>', get_client_orders, name='client_orders'),
+    path('product/addproduct', addproduct, name='add_product'),
     # path('/about/', about, name='about'),
 
 ]

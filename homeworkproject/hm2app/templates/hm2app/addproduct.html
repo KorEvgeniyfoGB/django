@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>{{title}}</h1>
+<form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <table>
+    {% for f in form %}
+    <tr>
+    <td><label for="{{ f.id_for_label }}">{{ f.label }}</label></td><td>{{ f }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+    <p><button type="submit">Отправить</button></p>
+</form>
+</body>
+</html>
